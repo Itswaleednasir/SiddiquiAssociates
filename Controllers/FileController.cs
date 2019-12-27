@@ -9,23 +9,44 @@ using MyClientCoreProject.Presenter;
 using MyClientCoreProject.ViewModel;
 using MyClientCoreProject.Repository.Interfaces;
 using MyClientCoreProject.Models.DB;
+using MyClientCoreProject.Utilities;
+using Microsoft.AspNetCore.Routing;
 
 namespace MyClientCoreProject.Controllers
 {
-    [Route("api/[controller]")]
+    /// <summary>
+    /// 
+    /// </summary>
+    [Route("api/[controller]/[action]")]
     [ApiController]
-    public class FileController : BaseController
+    public class FileController : ControllerBase
     {
+        private readonly ICustomLogger _logger;
+        private readonly RouteData route;
         FilePresenter fp;
-        public FileController(IHostingEnvironment hostingEnvironment, IFile file) : base(hostingEnvironment) //Constructor
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="hostingEnvironment"></param>
+        /// <param name="file"></param>
+        /// <param name="logger"></param>
+        public FileController(IHostingEnvironment hostingEnvironment, IFile file,ICustomLogger logger)//Constructor
         {
-            fp =new FilePresenter(file,hostingEnvironment);
+            _logger = logger;
+            fp = new FilePresenter(file,hostingEnvironment);
+            route = ControllerContext.RouteData;
         }
 
         #region File (GET,POST,DELETE)
 
+
         #region GET
-        [Route("files")]
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        //[Route("files")]
         [HttpGet]
         public IActionResult GetFileNumbers()
         {
@@ -35,14 +56,19 @@ namespace MyClientCoreProject.Controllers
             }
             catch (Exception ex)
             {
-                Exceptions(ex);
+                _logger.Exceptions(ex, route.Values["controller"].ToString(), route.Values["action"].ToString());
                 return StatusCode(500);
             }
         }
         #endregion
 
         #region POST
-        [Route("files")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        //[Route("files")]
         [HttpPost]
         public IActionResult CreateNewFile(TblFile model)
         {
@@ -52,14 +78,20 @@ namespace MyClientCoreProject.Controllers
             }
             catch (Exception ex)
             {
-                Exceptions(ex);
+                _logger.Exceptions(ex, route.Values["controller"].ToString(), route.Values["action"].ToString());
                 return StatusCode(500);
             }
         }
         #endregion
 
+
         #region DELETE
-        [Route("files/{Id}")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        //[Route("files/{Id}")]
         [HttpDelete]
         public IActionResult DeleteFile(int Id)
         {
@@ -69,7 +101,7 @@ namespace MyClientCoreProject.Controllers
             }
             catch (Exception ex)
             {
-                Exceptions(ex);
+                _logger.Exceptions(ex, route.Values["controller"].ToString(), route.Values["action"].ToString());
                 return StatusCode(500);
             }
         }
@@ -79,8 +111,13 @@ namespace MyClientCoreProject.Controllers
 
         #region Sector (GET,POST,PUT,DELETE)
 
+
         #region GET
-        [Route("sectors")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        //[Route("sectors")]
         [HttpGet]
         public IActionResult GetSectors()
         {
@@ -90,14 +127,20 @@ namespace MyClientCoreProject.Controllers
             }
             catch (Exception ex)
             {
-                Exceptions(ex);
+                _logger.Exceptions(ex, route.Values["controller"].ToString(), route.Values["action"].ToString());
                 return StatusCode(500);
             }
         }
         #endregion
 
+
         #region POST
-        [Route("sectors")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        //[Route("sectors")]
         [HttpPost]
         public IActionResult CreateNewSector(TblSectors model)
         {
@@ -107,14 +150,20 @@ namespace MyClientCoreProject.Controllers
             }
             catch (Exception ex)
             {
-                Exceptions(ex);
+                _logger.Exceptions(ex, route.Values["controller"].ToString(), route.Values["action"].ToString());
                 return StatusCode(500);
             }
         }
         #endregion
 
+
         #region PUT
-        [Route("sectors")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        //[Route("sectors")]
         [HttpPut]
         public IActionResult UpdateSector(TblSectors model)
         {
@@ -124,14 +173,20 @@ namespace MyClientCoreProject.Controllers
             }
             catch (Exception ex)
             {
-                Exceptions(ex);
+                _logger.Exceptions(ex, route.Values["controller"].ToString(), route.Values["action"].ToString());
                 return StatusCode(500);
             }
         }
         #endregion
 
+
         #region DELETE
-        [Route("sectors/{Id}")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        //[Route("sectors/{Id}")]
         [HttpDelete]
         public IActionResult DeleteSector(int Id)
         {
@@ -141,7 +196,7 @@ namespace MyClientCoreProject.Controllers
             }
             catch (Exception ex)
             {
-                Exceptions(ex);
+                _logger.Exceptions(ex, route.Values["controller"].ToString(), route.Values["action"].ToString());
                 return StatusCode(500);
             }
         }
@@ -151,8 +206,14 @@ namespace MyClientCoreProject.Controllers
 
         #region House Address (GET,POST,PUT)
 
+
         #region GET
-        [Route("houseno/{id?}")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        //[Route("houseno/{id?}")]
         [HttpGet]
         public IActionResult GetHouseAddress(int id = 0)
         {
@@ -162,14 +223,20 @@ namespace MyClientCoreProject.Controllers
             }
             catch (Exception ex)
             {
-                Exceptions(ex);
+                _logger.Exceptions(ex, route.Values["controller"].ToString(), route.Values["action"].ToString());
                 return StatusCode(500);
             }
         }
         #endregion
 
+
         #region POST
-        [Route("houseno")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        //[Route("houseno")]
         [HttpPost]
         public IActionResult CreateHouseAddress(TblHouseAddress model)
         {
@@ -179,14 +246,20 @@ namespace MyClientCoreProject.Controllers
             }
             catch (Exception ex)
             {
-                Exceptions(ex);
+                _logger.Exceptions(ex, route.Values["controller"].ToString(), route.Values["action"].ToString());
                 return StatusCode(500);
             }
         }
         #endregion
 
+
         #region PUT
-        [Route("houseno")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        //[Route("houseno")]
         [HttpPut]
         public IActionResult UpdateHouseAddress(HouseAddressViewModel model)
         {
@@ -196,7 +269,7 @@ namespace MyClientCoreProject.Controllers
             }
             catch (Exception ex)
             {
-                Exceptions(ex);
+                _logger.Exceptions(ex, route.Values["controller"].ToString(), route.Values["action"].ToString());
                 return StatusCode(500);
             }
         }

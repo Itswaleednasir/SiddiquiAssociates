@@ -4,18 +4,22 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using System.IO;
 
 using Microsoft.AspNetCore.Mvc;
-using MyClientCoreProject.Models.DB;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using MyClientCoreProject.Models.DB;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Serialization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MyClientCoreProject.Repository.Interfaces;
 using MyClientCoreProject.Repository.SqlRepository;
-
+using Swashbuckle.AspNetCore.Swagger;
+using System.Reflection;
+using Microsoft.OpenApi.Models;
+using MyClientCoreProject.Utilities;
 
 namespace MyClientCoreProject
 {
@@ -31,6 +35,18 @@ namespace MyClientCoreProject
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "core api", Version = "v1" });
+
+                // Set the comments path for the Swagger JSON and UI.
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var wwwRootPath = AppContext.BaseDirectory;
+                var xmlPath = Path.Combine(wwwRootPath, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                              .AddJsonOptions(options => {
                                  var resolver = options.SerializerSettings.ContractResolver;
@@ -38,20 +54,29 @@ namespace MyClientCoreProject
                                      (resolver as DefaultContractResolver).NamingStrategy = null;
                              });
 
+           
+
             services.AddDbContext<SiddiquiAssociateDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
 
             services.AddCors();
 
+            services.AddScoped<ICustomLogger, CustomLogger>();
             services.AddScoped<IEmployee,EmployeeRepository>();
             services.AddScoped<IFile, FileRepository>();
             services.AddScoped<IReceipt, ReceiptRepository>();
 
-            //services.AddScoped<,>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "core api v1");
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -60,6 +85,8 @@ namespace MyClientCoreProject
             app.UseCors(options => options.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader());
 
             app.UseMvc();
+
+            
         }
     }
 }

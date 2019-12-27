@@ -5,28 +5,44 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using MyClientCoreProject.Models.DB;
 using MyClientCoreProject.Presenter;
 using MyClientCoreProject.Repository.Interfaces;
+using MyClientCoreProject.Utilities;
 using MyClientCoreProject.ViewModel;
 
 namespace MyClientCoreProject.Controllers
 {
-    [Route("api/[controller]")]
+    /// <summary>
+    /// 
+    /// </summary>
+    [Route("api/[controller]/[action]")]
     [ApiController]
-    public class EmployeeController : BaseController
+    public class EmployeeController : ControllerBase
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        private readonly ICustomLogger _logger;
+        private readonly RouteData route;
         EmployeePresenter ep;
 
-        public EmployeeController(IHostingEnvironment hostingEnvironment, IEmployee employee) :base(hostingEnvironment) //Constructor
+        public EmployeeController(IHostingEnvironment hostingEnvironment, IEmployee employee, ICustomLogger logger)//Constructor
         {
-            ep = new EmployeePresenter(employee,hostingEnvironment);
+            _logger = logger;
+            route = ControllerContext.RouteData;
+            ep = new EmployeePresenter(employee, hostingEnvironment);
         }
 
         #region Employee (GET,POST,PUT,DELETE)
 
         #region GET
-        [Route("employee")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        //[Route("employee")]
         [HttpGet]
         public IActionResult GetEmployees()
         {
@@ -36,14 +52,19 @@ namespace MyClientCoreProject.Controllers
             }
             catch (Exception ex)
             {
-                Exceptions(ex);
+                _logger.Exceptions(ex, route.Values["controller"].ToString(), route.Values["action"].ToString());
                 return StatusCode(500);
             }
         }
         #endregion
 
         #region POST
-        [Route("employee")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        //[Route("employee")]
         [HttpPost]
         public IActionResult CreateEmployee(TblEmployee model)
         {
@@ -51,16 +72,21 @@ namespace MyClientCoreProject.Controllers
             {
                 return Ok(ep.CreateNewEmployee(model));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                Exceptions(ex);
+                _logger.Exceptions(ex, route.Values["controller"].ToString(), route.Values["action"].ToString());
                 return StatusCode(500);
             }
         }
         #endregion
 
         #region PUT
-        [Route("employee")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        //[Route("employee")]
         [HttpPut]
         public IActionResult UpdateEmployee(EmployeeRoleViewModel model)
         {
@@ -70,15 +96,20 @@ namespace MyClientCoreProject.Controllers
             }
             catch (Exception ex)
             {
-                Exceptions(ex);
+                _logger.Exceptions(ex, route.Values["controller"].ToString(), route.Values["action"].ToString());
                 return StatusCode(500);
             }
         }
         #endregion
 
         #region DELETE
-        [Route("employee/{Id}")]
-        [HttpDelete]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        //[Route("employee/{Id}")]
+        [HttpDelete("{Id}")]
         public IActionResult DeleteEmployee(int Id)
         {
             try
@@ -87,7 +118,7 @@ namespace MyClientCoreProject.Controllers
             }
             catch (Exception ex)
             {
-                Exceptions(ex);
+                _logger.Exceptions(ex, route.Values["controller"].ToString(), route.Values["action"].ToString());
                 return StatusCode(500);
             }
         }
@@ -98,7 +129,11 @@ namespace MyClientCoreProject.Controllers
         #region Roles (GET,POST,DELETE)
 
         #region GET
-        [Route("roles")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        //[Route("roles")]
         [HttpGet]
         public IActionResult GetRoles()
         {
@@ -108,14 +143,19 @@ namespace MyClientCoreProject.Controllers
             }
             catch (Exception ex)
             {
-                Exceptions(ex);
+                _logger.Exceptions(ex, route.Values["controller"].ToString(), route.Values["action"].ToString());
                 return StatusCode(500);
             }
         }
         #endregion
 
         #region POST
-        [Route("roles")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        //[Route("roles")]
         [HttpPost]
         public IActionResult CreateRole(TblEmployeeRole model)
         {
@@ -125,15 +165,20 @@ namespace MyClientCoreProject.Controllers
             }
             catch (Exception ex)
             {
-                Exceptions(ex);
+                _logger.Exceptions(ex, route.Values["controller"].ToString(), route.Values["action"].ToString());
                 return StatusCode(500);
             }
         }
         #endregion
 
         #region DELETE
-        [Route("roles/{Id}")]
-        [HttpDelete]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        //[Route("roles/{Id}")]
+        [HttpDelete("{Id}")]
         public IActionResult DeleteRole(int Id)
         {
             try
@@ -142,7 +187,7 @@ namespace MyClientCoreProject.Controllers
             }
             catch (Exception ex)
             {
-                Exceptions(ex);
+                _logger.Exceptions(ex, route.Values["controller"].ToString(), route.Values["action"].ToString());
                 return StatusCode(500);
             }
         }

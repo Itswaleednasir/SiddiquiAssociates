@@ -5,8 +5,20 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>wwwroot\MyClientCoreProject.xml</DocumentationFile>
+    <OutputPath>wwwroot\</OutputPath>
+    <NoWarn>1701;1702</NoWarn>
+    <WarningLevel>0</WarningLevel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\BaseController.cs" />
+  </ItemGroup>
+
   <ItemGroup>
     <Content Include="Helper\StaticHelper.cs" />
+    <Content Include="wwwroot\AllExceptions\LogException.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,6 +31,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-rc5" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="5.0.0-rc5" />
   </ItemGroup>
 
 </Project>
