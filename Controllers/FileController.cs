@@ -17,7 +17,7 @@ namespace MyClientCoreProject.Controllers
     /// <summary>
     /// 
     /// </summary>
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class FileController : ControllerBase
     {
@@ -46,8 +46,7 @@ namespace MyClientCoreProject.Controllers
         ///
         /// </summary>
         /// <returns></returns>
-        //[Route("files")]
-        [HttpGet]
+        [HttpGet("files")]
         public IActionResult GetFileNumbers()
         {
             try
@@ -68,8 +67,7 @@ namespace MyClientCoreProject.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        //[Route("files")]
-        [HttpPost]
+        [HttpPost("files")]
         public IActionResult CreateNewFile(TblFile model)
         {
             try
@@ -84,15 +82,13 @@ namespace MyClientCoreProject.Controllers
         }
         #endregion
 
-
         #region DELETE
         /// <summary>
         /// 
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
-        //[Route("files/{Id}")]
-        [HttpDelete]
+        [HttpDelete("files/{id}")]
         public IActionResult DeleteFile(int Id)
         {
             try
@@ -111,14 +107,12 @@ namespace MyClientCoreProject.Controllers
 
         #region Sector (GET,POST,PUT,DELETE)
 
-
         #region GET
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        //[Route("sectors")]
-        [HttpGet]
+        [HttpGet("sectors")]
         public IActionResult GetSectors()
         {
             try
@@ -133,15 +127,13 @@ namespace MyClientCoreProject.Controllers
         }
         #endregion
 
-
         #region POST
         /// <summary>
         /// 
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        //[Route("sectors")]
-        [HttpPost]
+        [HttpPost("sectors")]
         public IActionResult CreateNewSector(TblSectors model)
         {
             try
@@ -156,15 +148,13 @@ namespace MyClientCoreProject.Controllers
         }
         #endregion
 
-
         #region PUT
         /// <summary>
         /// 
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        //[Route("sectors")]
-        [HttpPut]
+        [HttpPut("sectors")]
         public IActionResult UpdateSector(TblSectors model)
         {
             try
@@ -179,15 +169,13 @@ namespace MyClientCoreProject.Controllers
         }
         #endregion
 
-
         #region DELETE
         /// <summary>
         /// 
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
-        //[Route("sectors/{Id}")]
-        [HttpDelete]
+        [HttpDelete("sectors/{id}")]
         public IActionResult DeleteSector(int Id)
         {
             try
@@ -206,15 +194,13 @@ namespace MyClientCoreProject.Controllers
 
         #region House Address (GET,POST,PUT)
 
-
         #region GET
         /// <summary>
         /// 
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        //[Route("houseno/{id?}")]
-        [HttpGet]
+        [HttpGet("houseno/{id?}")]
         public IActionResult GetHouseAddress(int id = 0)
         {
             try
@@ -229,15 +215,13 @@ namespace MyClientCoreProject.Controllers
         }
         #endregion
 
-
         #region POST
         /// <summary>
         /// 
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        //[Route("houseno")]
-        [HttpPost]
+        [HttpPost("houseno")]
         public IActionResult CreateHouseAddress(TblHouseAddress model)
         {
             try
@@ -252,15 +236,13 @@ namespace MyClientCoreProject.Controllers
         }
         #endregion
 
-
         #region PUT
         /// <summary>
         /// 
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        //[Route("houseno")]
-        [HttpPut]
+        [HttpPut("houseno")]
         public IActionResult UpdateHouseAddress(HouseAddressViewModel model)
         {
             try

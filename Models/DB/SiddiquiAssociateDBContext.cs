@@ -116,10 +116,6 @@ namespace MyClientCoreProject.Models.DB
             {
                 entity.ToTable("tblMessrs");
 
-                entity.Property(e => e.Cnic)
-                    .HasMaxLength(15)
-                    .IsUnicode(false);
-
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(50)
@@ -159,9 +155,7 @@ namespace MyClientCoreProject.Models.DB
                     .HasMaxLength(11)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ChallanNo)
-                    .HasMaxLength(15)
-                    .IsUnicode(false);
+                entity.Property(e => e.ChallanAmount).HasColumnType("money");
 
                 entity.Property(e => e.Description)
                     .HasMaxLength(1000)

@@ -27,7 +27,7 @@ namespace MyClientCoreProject.Models.DB
         public string DispatchDate { get; set; }
         public decimal? StampDutyAmount { get; set; }
         public string StampDutyDate { get; set; }
-        public string ChallanNo { get; set; }
+        public decimal? ChallanAmount { get; set; }
         public string ChallanDate { get; set; }
         public int? EmployeeId { get; set; }
 

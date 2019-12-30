@@ -49,7 +49,7 @@ namespace MyClientCoreProject.Repository.SqlRepository
         {
             try
             {
-                var IsMessrExists = dbContext.TblMessrs.Where(x => x.PhoneNo == model.PhoneNo || x.Cnic == model.Cnic).FirstOrDefault();
+                var IsMessrExists = dbContext.TblMessrs.Where(x => x.PhoneNo == model.PhoneNo).FirstOrDefault();
                 if (IsMessrExists != null)
                     return 0;
                 else
@@ -75,8 +75,7 @@ namespace MyClientCoreProject.Repository.SqlRepository
                 if (recordToUpdateInDb != null)
                 {
                     var duplicateNameRecord = dbContext.TblMessrs.Where(x => x.Id != model.Id &&
-                                                                            (x.PhoneNo == model.PhoneNo ||
-                                                                             x.Cnic == model.Cnic)).FirstOrDefault();
+                                                                            (x.PhoneNo == model.PhoneNo)).FirstOrDefault();
 
                     if (duplicateNameRecord != null)
                     {
@@ -86,7 +85,6 @@ namespace MyClientCoreProject.Repository.SqlRepository
                     {
                         recordToUpdateInDb.Name = model.Name;
                         recordToUpdateInDb.PhoneNo = model.PhoneNo;
-                        recordToUpdateInDb.Cnic = model.Cnic;
                         return dbContext.SaveChanges();
                     }
                 }
@@ -179,60 +177,28 @@ namespace MyClientCoreProject.Repository.SqlRepository
         {
             try
             {
-                var receiptTable = dbContext.TblReceipt.Select(x => x).Where(x => x.HouseId == model.HouseId).FirstOrDefault();
-
-                //var paymentTable = dbContext.TblPayments.Select(x => x).Where(x => x.ReceiptId == receiptTable.Id).order
-                //var viewModel = new Order();
-                //viewModel.GL = "model ki value";
-                //viewModel.BLIC = "model ki value1";
-
-                //var checkReciept = orderDetail;
-                var payments = new TblPayments();
-                foreach (var item in model.GetType().GetProperties())
+                var IsReceiptExists = dbContext.TblReceipt.Where(x => x.HouseId == model.HouseId).FirstOrDefault();
+                if (IsReceiptExists == null)
+                    return 0;
+                else
                 {
-
-                    var columnName = item.Name;
-                    var val = model.GetType().GetProperty(columnName).GetValue(model);
-
-                    if (receiptTable.GetType().GetProperty(columnName) != null)
-                    {
-                        if (val != null && !string.IsNullOrEmpty(val.ToString()) && val.ToString() != "0")
-                        {
-                            receiptTable.GetType().GetProperty(columnName).SetValue(receiptTable, val);
-                        }
-
-                    }
-
-                    if (payments.GetType().GetProperty(columnName) != null)
-                    {
-
-                        if (val != null && !string.IsNullOrEmpty(val.ToString()) && val.ToString() != "0")
-                        {
-                            payments.GetType().GetProperty(columnName).SetValue(payments, val);
-                        }
-                    }
-                    //var IsReceiptExists = dbContext.TblReceipt.Where(x => x.HouseId == model.HouseId).FirstOrDefault();
-                    //if (IsReceiptExists == null)
-                    //    return 0;
-                    //else
-                    //{
-                    //    int updateReceiptCount = dbContext.Database.ExecuteSqlCommand($"sp_UpdateReceipt {model.HouseId},{model.Amount},{model.PaymentDate}");
-                    //    return updateReceiptCount;
-                    //}
+                    int updateReceiptCount = 0;
+                    if (model.Amount != 0 && model.PaymentDate != "")
+                        updateReceiptCount = dbContext.Database.ExecuteSqlCommand($"sp_UpdateReceipt @HouseId = {model.HouseId},@NewPayment = {model.Amount},@PaymentDate = {model.PaymentDate},@ParamUpdate = Payment ");
+                    else if (model.RegisterMessrsId != null && model.RegisterAmount != null && model.RegisterDate != "")
+                        updateReceiptCount = dbContext.Database.ExecuteSqlCommand($"sp_UpdateReceipt @HouseId = {model.HouseId},@ParamUpdate = Register,@RegisterMessrsID = {model.RegisterMessrsId},@RegisterDate = {model.RegisterDate},@RegisterAmount = {model.RegisterAmount} ");
+                    else if (model.DiaryNo != null && model.DiaryDate != "")
+                        updateReceiptCount = dbContext.Database.ExecuteSqlCommand($"sp_UpdateReceipt @HouseId = {model.HouseId},@ParamUpdate = Diary,@DiaryNo = {model.DiaryNo},@DiaryDate = {model.DiaryDate}");
+                    else if (model.DispatchNo != null && model.DispatchDate != "")
+                        updateReceiptCount = dbContext.Database.ExecuteSqlCommand($"sp_UpdateReceipt @HouseId = {model.HouseId},@ParamUpdate = Dispatch,@DispatchNo = {model.DispatchNo},@DispatchDate = {model.DispatchDate}");
+                    else if(model.StampDutyAmount != null && model.StampDutyDate != "")
+                        updateReceiptCount = dbContext.Database.ExecuteSqlCommand($"sp_UpdateReceipt @HouseId = {model.HouseId},@ParamUpdate = StampDuty,@StampDutyAmount = {model.StampDutyAmount},@StampDutyDate = {model.StampDutyDate}");
+                    else if (model.ChallanAmount != null && model.ChallanDate != "")
+                        updateReceiptCount = dbContext.Database.ExecuteSqlCommand($"sp_UpdateReceipt @HouseId = {model.HouseId},@ParamUpdate = Challan,@ChallanAmount = {model.ChallanAmount},@ChallanDate = {model.ChallanDate}");
+                    else if (model.FileExpenditure != null)
+                        updateReceiptCount = dbContext.Database.ExecuteSqlCommand($"sp_UpdateReceipt @HouseId = {model.HouseId},@ParamUpdate = FileExpenditure,@FileExpenditure = {model.FileExpenditure}");
+                    return updateReceiptCount;
                 }
-                if (payments != null)
-                {
-                    payments.ReceiptId = receiptTable.Id;
-                    dbContext.TblPayments.Add(payments);
-                }
-
-                if (receiptTable != null)
-                {
-                    dbContext.Entry(receiptTable).State = EntityState.Modified;
-
-                }
-
-                return dbContext.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -342,13 +308,5 @@ namespace MyClientCoreProject.Repository.SqlRepository
 
         #endregion
 
-
-        //////////////////////// Koi aisi test comment dal do /////////////////////////////
-        //////////////////////// Koi aisi test comment dal do /////////////////////////////
-        //////////////////////// Koi aisi test comment dal do /////////////////////////////
-        //////////////////////// Koi aisi test comment dal do /////////////////////////////
-        //////////////////////// Koi aisi test comment dal do /////////////////////////////
-        //////////////////////// Koi aisi test comment dal do /////////////////////////////
-        //////////////////////// Koi aisi test comment dal do /////////////////////////////
     }
 }

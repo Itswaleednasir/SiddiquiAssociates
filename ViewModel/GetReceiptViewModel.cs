@@ -14,8 +14,9 @@ namespace MyClientCoreProject.ViewModel
         public string HouseNo { get; set; }
         public string MessrName { get; set; }
         public string Description { get; set; }
-        public decimal TotalAmount { get; set; }
+        public decimal? TotalAmount { get; set; }
         public string RegisterDate { get; set; }
+        public string RegisterMessrName { get; set; }
         public decimal? RegisterAmount { get; set; }
         public string DiaryDate { get; set; }
         public string DiaryNo { get; set; }
@@ -24,9 +25,11 @@ namespace MyClientCoreProject.ViewModel
         public string StampDutyDate { get; set; }
         public decimal? StampDutyAmount { get; set; }
         public string ChallanDate { get; set; }
-        public string ChallanNo { get; set; }
+        public decimal? ChallanAmount { get; set; }
+        public decimal? FileExpenditure { get; set; }
         public string PaymentDate { get; set; }
         public decimal Payment { get; set; }
         public decimal Balance { get; set; }
+        
     }
 }

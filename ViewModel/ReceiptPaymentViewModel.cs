@@ -24,10 +24,10 @@ namespace MyClientCoreProject.ViewModel
         public string DispatchDate { get; set; }
         public decimal? StampDutyAmount { get; set; }
         public string StampDutyDate { get; set; }
-        public string ChallanNo { get; set; }
+        public decimal? ChallanAmount { get; set; }
         public string ChallanDate { get; set; }
+        public decimal? FileExpenditure { get; set; }
         public int? EmployeeId { get; set; }
-
         public int PaymentId { get; set; }
         public decimal Amount { get; set; }
         public string PaymentDate { get; set; }

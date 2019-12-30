@@ -17,7 +17,7 @@ namespace MyClientCoreProject.Controllers
     /// <summary>
     /// 
     /// </summary>
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ReceiptController : ControllerBase
     {
@@ -37,16 +37,14 @@ namespace MyClientCoreProject.Controllers
 
         #region Messrs (GET,POST,PUT,DELETE)
 
-
         #region GET
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        //[Route("messr")]
-        [HttpGet]
+        [HttpGet("messr")]
         public IActionResult GetMessrs()
-        {
+       {
             try
             {
                 return Ok(rp.GetMessrs());
@@ -59,15 +57,13 @@ namespace MyClientCoreProject.Controllers
         }
         #endregion
 
-
         #region POST
         /// <summary>
         /// 
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        //[Route("messr")]
-        [HttpPost]
+        [HttpPost("messr")]
         public IActionResult CreateMessr(TblMessrs model)
         {
             try
@@ -88,8 +84,7 @@ namespace MyClientCoreProject.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        //[Route("messr")]
-        [HttpPut]
+        [HttpPut("messr")]
         public IActionResult UpdateMessrs(TblMessrs model)
         {
             try
@@ -110,8 +105,7 @@ namespace MyClientCoreProject.Controllers
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
-        //[Route("messr/{Id}")]
-        [HttpDelete]
+        [HttpDelete("messr/{Id}")]
         public IActionResult DeleteMessr(int Id)
         {
             try
@@ -136,8 +130,7 @@ namespace MyClientCoreProject.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        //[Route("receipt/{id}")]
-        [HttpGet]
+        [HttpGet("receipt/{id}")]
         public IActionResult GetReceipt(int id)
         {
             try
@@ -158,8 +151,7 @@ namespace MyClientCoreProject.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        //[Route("receipt")]
-        [HttpPost]
+        [HttpPost("receipt")]
         public IActionResult PostReceipt(ReceiptPaymentViewModel model)
         {           
             try
@@ -180,8 +172,7 @@ namespace MyClientCoreProject.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        //[Route("receipt")]
-        [HttpPut]
+        [HttpPut("receipt")]
         public IActionResult UpdateReceipt(ReceiptPaymentViewModel model)
         {
             try
@@ -223,8 +214,7 @@ namespace MyClientCoreProject.Controllers
         /// </summary>
         /// <returns></returns>
         ///         
-        /// //[Route("registermessr")]
-        [HttpGet]
+        [HttpGet("registermessr")]
         public IActionResult GetRegisterMessrs()
         {
             try
@@ -245,8 +235,7 @@ namespace MyClientCoreProject.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        //[Route("registermessr")]        
-        [HttpPost]
+        [HttpPost("registermessr")]
         public IActionResult PostRegisterMessrs(TblRegisterMessrs model)
         {
             try
@@ -267,8 +256,7 @@ namespace MyClientCoreProject.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        /// [Route("registermessr")]
-        [HttpPut]
+        [HttpPut("registermessr")]
         public IActionResult PutRegisterMessrs(TblRegisterMessrs model)
         {
             try
@@ -289,8 +277,7 @@ namespace MyClientCoreProject.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        /// [Route("registermessr/{id}")]
-        [HttpDelete]        
+        [HttpDelete("registermessr/{id}")]        
         public IActionResult DeleteRegisterMessrs(int id)
         {
             try

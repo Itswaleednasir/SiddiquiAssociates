@@ -170,10 +170,12 @@ namespace MyClientCoreProject.Repository.SqlRepository
         {
             try
             {
-                var SectorId = dbContext.TblSectors.Find(Id);
+                var SectorId = dbContext.TblSectors.Where(x => x.Id == Id).FirstOrDefault();
                 if(SectorId != null)
                 {
-                    dbContext.TblSectors.Remove(SectorId);
+                    var houseId = dbContext.TblHouseAddress.Where(x => x.SectorId == SectorId.Id).FirstOrDefault();
+                    dbContext.TblHouseAddress.RemoveRange(houseId);
+                    dbContext.TblSectors.RemoveRange(SectorId);
                     dbContext.SaveChanges();
                 }
                 return SectorId;

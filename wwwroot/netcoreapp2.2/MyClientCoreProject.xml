@@ -206,7 +206,6 @@
             </summary>
             <returns></returns>
                     
-            //[Route("registermessr")]
         </member>
         <member name="M:MyClientCoreProject.Controllers.ReceiptController.PostRegisterMessrs(MyClientCoreProject.Models.DB.TblRegisterMessrs)">
             <summary>
@@ -221,7 +220,6 @@
             </summary>
             <param name="model"></param>
             <returns></returns>
-            [Route("registermessr")]
         </member>
         <member name="M:MyClientCoreProject.Controllers.ReceiptController.DeleteRegisterMessrs(System.Int32)">
             <summary>
@@ -229,39 +227,6 @@
             </summary>
             <param name="id"></param>
             <returns></returns>
-            [Route("registermessr/{id}")]
-        </member>
-        <member name="M:MyClientCoreProject.Controllers.ValuesController.Get">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:MyClientCoreProject.Controllers.ValuesController.Get(System.Int32)">
-            <summary>
-            
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:MyClientCoreProject.Controllers.ValuesController.Post(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="value"></param>
-        </member>
-        <member name="M:MyClientCoreProject.Controllers.ValuesController.Put(System.Int32,System.String)">
-            <summary>
-            
-            </summary>
-            <param name="id"></param>
-            <param name="value"></param>
-        </member>
-        <member name="M:MyClientCoreProject.Controllers.ValuesController.Delete(System.Int32)">
-            <summary>
-            
-            </summary>
-            <param name="id"></param>
         </member>
     </members>
 </doc>

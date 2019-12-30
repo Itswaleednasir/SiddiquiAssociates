@@ -17,7 +17,7 @@ namespace MyClientCoreProject.Controllers
     /// <summary>
     /// 
     /// </summary>
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class EmployeeController : ControllerBase
     {
@@ -42,8 +42,7 @@ namespace MyClientCoreProject.Controllers
         /// 
         /// </summary>
         /// <returns></returns>
-        //[Route("employee")]
-        [HttpGet]
+        [HttpGet("employee")]
         public IActionResult GetEmployees()
         {
             try
@@ -64,8 +63,7 @@ namespace MyClientCoreProject.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        //[Route("employee")]
-        [HttpPost]
+        [HttpPost("employee")]
         public IActionResult CreateEmployee(TblEmployee model)
         {
             try
@@ -86,8 +84,7 @@ namespace MyClientCoreProject.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        //[Route("employee")]
-        [HttpPut]
+        [HttpPut("employee")]
         public IActionResult UpdateEmployee(EmployeeRoleViewModel model)
         {
             try
@@ -108,8 +105,7 @@ namespace MyClientCoreProject.Controllers
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
-        //[Route("employee/{Id}")]
-        [HttpDelete("{Id}")]
+        [HttpDelete("employee/{Id}")]
         public IActionResult DeleteEmployee(int Id)
         {
             try
@@ -133,8 +129,7 @@ namespace MyClientCoreProject.Controllers
         /// 
         /// </summary>
         /// <returns></returns>
-        //[Route("roles")]
-        [HttpGet]
+        [HttpGet("roles")]
         public IActionResult GetRoles()
         {
             try
@@ -155,8 +150,7 @@ namespace MyClientCoreProject.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        //[Route("roles")]
-        [HttpPost]
+        [HttpPost("roles")]
         public IActionResult CreateRole(TblEmployeeRole model)
         {
             try
@@ -177,8 +171,7 @@ namespace MyClientCoreProject.Controllers
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
-        //[Route("roles/{Id}")]
-        [HttpDelete("{Id}")]
+        [HttpDelete("roles/{Id}")]
         public IActionResult DeleteRole(int Id)
         {
             try
