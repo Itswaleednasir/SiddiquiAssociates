@@ -27,6 +27,7 @@ namespace MyClientCoreProject.ViewModel
         public string ChallanDate { get; set; }
         public decimal? ChallanAmount { get; set; }
         public decimal? FileExpenditure { get; set; }
+        public decimal? TotalExpenditure { get; set; }
         public string PaymentDate { get; set; }
         public decimal Payment { get; set; }
         public decimal Balance { get; set; }

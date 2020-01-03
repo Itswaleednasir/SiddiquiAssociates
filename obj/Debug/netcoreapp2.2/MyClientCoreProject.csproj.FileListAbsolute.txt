@@ -1,4 +1,3 @@
-D:\Waleed - Projects\Projects\MyClientCoreProject\obj\Debug\netcoreapp2.2\MyClientCoreProject.csprojAssemblyReference.cache
 D:\Waleed - Projects\Projects\MyClientCoreProject\obj\Debug\netcoreapp2.2\MyClientCoreProject.RazorAssemblyInfo.cache
 D:\Waleed - Projects\Projects\MyClientCoreProject\obj\Debug\netcoreapp2.2\MyClientCoreProject.RazorAssemblyInfo.cs
 D:\Waleed - Projects\Projects\MyClientCoreProject\obj\Debug\netcoreapp2.2\MyClientCoreProject.AssemblyInfoInputs.cache
