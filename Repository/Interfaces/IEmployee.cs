@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MyClientCoreProject.Models.DB;
 using MyClientCoreProject.ViewModel;
+using System.Linq.Expressions;
 
 namespace MyClientCoreProject.Repository.Interfaces
 {
@@ -42,8 +43,12 @@ namespace MyClientCoreProject.Repository.Interfaces
 
         #region DELETE
         TblEmployeeRole DeleteRole(int Id);
-        #endregion 
+        #endregion
 
+        #endregion
+
+        #region Authorization(GET)
+        IEnumerable<TblEmployee> GetEmployeeForAuthorization(Expression<Func<TblEmployee, bool>> predicate);
         #endregion
     }
 }

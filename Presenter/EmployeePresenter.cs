@@ -15,13 +15,11 @@ namespace MyClientCoreProject.Presenter
 {
     public class EmployeePresenter
     {
-        private readonly IHostingEnvironment env;
         private readonly IEmployee employee;
         UtilitiesProvider up;
 
         public EmployeePresenter(IEmployee employee, IHostingEnvironment env) //Constructor
         {
-            this.env = env;
             this.employee = employee;
             up = new UtilitiesProvider(env);
         }
@@ -33,7 +31,6 @@ namespace MyClientCoreProject.Presenter
         {
             try
             {
-
                 return employee.GetEmployees();
             }
             catch (Exception ex)

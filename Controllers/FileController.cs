@@ -11,12 +11,14 @@ using MyClientCoreProject.Repository.Interfaces;
 using MyClientCoreProject.Models.DB;
 using MyClientCoreProject.Utilities;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MyClientCoreProject.Controllers
 {
     /// <summary>
     /// 
     /// </summary>
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class FileController : ControllerBase

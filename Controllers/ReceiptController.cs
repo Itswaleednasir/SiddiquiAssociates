@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
@@ -17,6 +18,7 @@ namespace MyClientCoreProject.Controllers
     /// <summary>
     /// 
     /// </summary>
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ReceiptController : ControllerBase

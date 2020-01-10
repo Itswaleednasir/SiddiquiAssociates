@@ -20,6 +20,9 @@ using Swashbuckle.AspNetCore.Swagger;
 using System.Reflection;
 using Microsoft.OpenApi.Models;
 using MyClientCoreProject.Utilities;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 namespace MyClientCoreProject
 {
@@ -31,6 +34,7 @@ namespace MyClientCoreProject
         }
 
         public IConfiguration Configuration { get; }
+
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -47,18 +51,46 @@ namespace MyClientCoreProject
 
             });
 
+            services.AddCors(o => o.AddPolicy("AllowAll", builder =>
+            {
+                builder
+                 .AllowAnyOrigin()
+                 .AllowAnyMethod()
+                 .AllowAnyHeader()
+                 .AllowCredentials();
+            }));
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                              .AddJsonOptions(options => {
                                  var resolver = options.SerializerSettings.ContractResolver;
                                  if (resolver != null)
                                      (resolver as DefaultContractResolver).NamingStrategy = null;
-                             });
-
-           
+                             });        
 
             services.AddDbContext<SiddiquiAssociateDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
 
-            services.AddCors();
+            var Key = Encoding.ASCII.GetBytes(Configuration.GetValue<string>("AppSettings:JWT_SECRET"));
+
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    //ValidateLifetime = true
+
+                };
+           
+            });
 
             services.AddScoped<ICustomLogger, CustomLogger>();
             services.AddScoped<IEmployee,EmployeeRepository>();
@@ -82,10 +114,13 @@ namespace MyClientCoreProject
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(options => options.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader());
+            //app.UseCors(options => options.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader());
+            app.UseCors("AllowAll");
+
+            app.UseAuthentication();
+            //app.UseAuthorization();
 
             app.UseMvc();
-
             
         }
     }

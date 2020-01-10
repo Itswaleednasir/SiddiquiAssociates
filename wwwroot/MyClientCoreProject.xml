@@ -4,6 +4,18 @@
         <name>MyClientCoreProject</name>
     </assembly>
     <members>
+        <member name="T:MyClientCoreProject.Controllers.AuthController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MyClientCoreProject.Controllers.AuthController.AuthToken(MyClientCoreProject.Models.DB.TblEmployee)">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
         <member name="T:MyClientCoreProject.Controllers.EmployeeController">
             <summary>
             

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -192,7 +193,26 @@ namespace MyClientCoreProject.Repository.SqlRepository
                 return null;
             }
         }
-        #endregion 
+        #endregion
+
+        #endregion
+
+        #region Authorization
+
+        #region GET
+        public IEnumerable<TblEmployee> GetEmployeeForAuthorization(Expression<Func<TblEmployee, bool>> predicate)
+        {
+            try
+            {
+                return dbContext.TblEmployee.Where(predicate).ToList();
+            }
+            catch (Exception ex)
+            {
+                StaticHelper.LogException(path: up.GetLogFilePath(), errorMessage: ex.Message, methodName: $"Repository name: {nameof(EmployeeRepository)} - Method name:  {nameof(GetEmployeeForAuthorization)}", stackTrace: ex.StackTrace);
+                return null;
+            }
+        }
+        #endregion
 
         #endregion
     }
