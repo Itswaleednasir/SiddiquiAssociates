@@ -40,9 +40,9 @@ namespace MyClientCoreProject.Presenter
                     var jwtSecret = configuration.GetValue<string>("AppSettings:JWT_SECRET");
                     var accessTokenExpiration = configuration.GetValue<int>("AppSettings:ACCESS_TOKEN_EXPIRES_IN_MINUTES");
 
-                    token = GenerateTokenAsync(userId: employeeRecord.Id, 
-                                               userName: employeeRecord.UserName, 
-                                               jwtSecret: jwtSecret, 
+                    token = GenerateTokenAsync(userId: employeeRecord.Id,
+                                               userName: employeeRecord.UserName,
+                                               jwtSecret: jwtSecret,
                                                jwtExpiry: accessTokenExpiration);
                 }
                 return token;

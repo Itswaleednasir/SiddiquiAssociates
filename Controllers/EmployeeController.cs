@@ -14,7 +14,7 @@ using MyClientCoreProject.Utilities;
 using MyClientCoreProject.ViewModel;
 
 namespace MyClientCoreProject.Controllers
-{
+{       
     /// <summary>
     /// 
     /// </summary>
@@ -65,19 +65,19 @@ namespace MyClientCoreProject.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        [HttpPost("employee")]
-        public IActionResult CreateEmployee(TblEmployee model)
-        {
-            try
-            {
-                return Ok(ep.CreateNewEmployee(model));
-            }
-            catch (Exception ex)
-            {
-                _logger.Exceptions(ex, route.Values["controller"].ToString(), route.Values["action"].ToString());
-                return StatusCode(500);
-            }
-        }
+        //[HttpPost("employee")]
+        //public IActionResult CreateEmployee(TblEmployee model)
+        //{
+        //    try
+        //    {
+        //        return Ok(ep.CreateNewEmployee(model));
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.Exceptions(ex, route.Values["controller"].ToString(), route.Values["action"].ToString());
+        //        return StatusCode(500);
+        //    }
+        //}
         #endregion
 
         #region PUT

@@ -1,5 +1,4 @@
-﻿using MyClientCoreProject.Models;
-using MyClientCoreProject.Models.DB;
+﻿using MyClientCoreProject.Models.DB;
 using MyClientCoreProject.ViewModel;
 using System;
 using System.Collections.Generic;

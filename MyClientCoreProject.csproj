@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -13,13 +13,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Controllers\BaseController.cs" />
+    <Compile Remove="wwwroot\netcoreapp2.2\**" />
+    <Content Remove="wwwroot\netcoreapp2.2\**" />
+    <EmbeddedResource Remove="wwwroot\netcoreapp2.2\**" />
+    <None Remove="wwwroot\netcoreapp2.2\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Helper\StaticHelper.cs" />
-    <Content Include="wwwroot\AllExceptions\LogException.txt" />
+    <Compile Remove="Controllers\BaseController.cs" />
   </ItemGroup>
+
+ 
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.7" />

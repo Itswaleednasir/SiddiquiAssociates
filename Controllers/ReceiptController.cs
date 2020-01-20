@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
-using MyClientCoreProject.Models;
 using MyClientCoreProject.Models.DB;
 using MyClientCoreProject.Presenter;
 using MyClientCoreProject.Repository.Interfaces;
@@ -46,7 +45,7 @@ namespace MyClientCoreProject.Controllers
         /// <returns></returns>
         [HttpGet("messr")]
         public IActionResult GetMessrs()
-       {
+        {
             try
             {
                 return Ok(rp.GetMessrs());
@@ -155,7 +154,7 @@ namespace MyClientCoreProject.Controllers
         /// <returns></returns>
         [HttpPost("receipt")]
         public IActionResult PostReceipt(ReceiptPaymentViewModel model)
-        {           
+        {
             try
             {
                 return Ok(rp.CreateNewReceipt(model));
@@ -279,7 +278,7 @@ namespace MyClientCoreProject.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpDelete("registermessr/{id}")]        
+        [HttpDelete("registermessr/{id}")]
         public IActionResult DeleteRegisterMessrs(int id)
         {
             try

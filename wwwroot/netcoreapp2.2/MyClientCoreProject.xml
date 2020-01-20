@@ -32,13 +32,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:MyClientCoreProject.Controllers.EmployeeController.CreateEmployee(MyClientCoreProject.Models.DB.TblEmployee)">
-            <summary>
-            
-            </summary>
-            <param name="model"></param>
-            <returns></returns>
-        </member>
         <member name="M:MyClientCoreProject.Controllers.EmployeeController.UpdateEmployee(MyClientCoreProject.ViewModel.EmployeeRoleViewModel)">
             <summary>
             

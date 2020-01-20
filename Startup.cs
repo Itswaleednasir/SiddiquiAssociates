@@ -9,7 +9,6 @@ using System.IO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using MyClientCoreProject.Models.DB;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Serialization;
 using Microsoft.Extensions.Configuration;
@@ -23,6 +22,7 @@ using MyClientCoreProject.Utilities;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using MyClientCoreProject.Models.DB;
 
 namespace MyClientCoreProject
 {
@@ -57,6 +57,7 @@ namespace MyClientCoreProject
                  .AllowAnyOrigin()
                  .AllowAnyMethod()
                  .AllowAnyHeader()
+                 .AllowAnyMethod()
                  .AllowCredentials();
             }));
 
@@ -67,7 +68,7 @@ namespace MyClientCoreProject
                                      (resolver as DefaultContractResolver).NamingStrategy = null;
                              });        
 
-            services.AddDbContext<SiddiquiAssociateDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
+            services.AddDbContext<DocumentManagement_WContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
 
             var Key = Encoding.ASCII.GetBytes(Configuration.GetValue<string>("AppSettings:JWT_SECRET"));
 

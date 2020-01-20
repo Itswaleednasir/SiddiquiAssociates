@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MyClientCoreProject.Helper;
-using MyClientCoreProject.Models;
 using MyClientCoreProject.Models.DB;
 using MyClientCoreProject.Repository.Interfaces;
 using MyClientCoreProject.Utilities;
@@ -17,11 +16,11 @@ namespace MyClientCoreProject.Repository.SqlRepository
 {
     public class EmployeeRepository : IEmployee
     {
-        private readonly SiddiquiAssociateDBContext dbContext;
+        private readonly DocumentManagement_WContext dbContext;
         private readonly IHostingEnvironment env;
         UtilitiesProvider up;
 
-        public EmployeeRepository(SiddiquiAssociateDBContext dbContext, IHostingEnvironment env) //Constructor
+        public EmployeeRepository(DocumentManagement_WContext dbContext, IHostingEnvironment env) //Constructor
         {
             this.dbContext = dbContext;
             this.env = env;
@@ -126,7 +125,7 @@ namespace MyClientCoreProject.Repository.SqlRepository
                 StaticHelper.LogException(path: up.GetLogFilePath(), errorMessage: ex.Message, methodName: $"Repository name: {nameof(EmployeeRepository)} - Method name:  {nameof(DeleteEmployee)}", stackTrace: ex.StackTrace);
                 return null;
             }
-        } 
+        }
         #endregion
 
         #endregion
@@ -164,7 +163,7 @@ namespace MyClientCoreProject.Repository.SqlRepository
                 {
                     dbContext.Add(model);
                     return dbContext.SaveChanges();
-                }           
+                }
             }
             catch (Exception ex)
             {
@@ -187,7 +186,7 @@ namespace MyClientCoreProject.Repository.SqlRepository
                 }
                 return IsEmployeeRoleExists;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 StaticHelper.LogException(path: up.GetLogFilePath(), errorMessage: ex.Message, methodName: $"Repository name: {nameof(EmployeeRepository)} - Method name:  {nameof(DeleteRole)}", stackTrace: ex.StackTrace);
                 return null;

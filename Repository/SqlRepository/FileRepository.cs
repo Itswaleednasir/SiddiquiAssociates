@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
-using MyClientCoreProject.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MyClientCoreProject.Repository.Interfaces;
 using System.Threading.Tasks;
@@ -16,11 +15,11 @@ namespace MyClientCoreProject.Repository.SqlRepository
 {
     public class FileRepository : IFile
     {
-        private readonly SiddiquiAssociateDBContext dbContext;
+        private readonly DocumentManagement_WContext dbContext;
         private readonly IHostingEnvironment env;
         UtilitiesProvider up;
 
-        public FileRepository(SiddiquiAssociateDBContext dbContext, IHostingEnvironment env) //Constructor
+        public FileRepository(DocumentManagement_WContext dbContext, IHostingEnvironment env) //Constructor
         {
             this.dbContext = dbContext;
             this.env = env;
@@ -40,7 +39,7 @@ namespace MyClientCoreProject.Repository.SqlRepository
                     Value = x.Id.ToString()
                 }).OrderBy(x => x.Text).ToList();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 StaticHelper.LogException(path: up.GetLogFilePath(), errorMessage: ex.Message, methodName: $"Repository name: {nameof(FileRepository)} - Method name:  {nameof(GetFiles)}", stackTrace: ex.StackTrace);
                 return null;
@@ -114,7 +113,7 @@ namespace MyClientCoreProject.Repository.SqlRepository
             try
             {
                 var count = dbContext.TblSectors.Where(x => x.SectorNo == model.SectorNo).FirstOrDefault();
-                if(count == null)
+                if (count == null)
                 {
                     dbContext.Add(model);
                     return dbContext.SaveChanges();
@@ -149,7 +148,7 @@ namespace MyClientCoreProject.Repository.SqlRepository
                     else
                     {
                         recordToUpdateInDb.SectorNo = model.SectorNo;
-                        return dbContext.SaveChanges();                      
+                        return dbContext.SaveChanges();
                     }
                 }
                 else
@@ -171,7 +170,7 @@ namespace MyClientCoreProject.Repository.SqlRepository
             try
             {
                 var SectorId = dbContext.TblSectors.Where(x => x.Id == Id).FirstOrDefault();
-                if(SectorId != null)
+                if (SectorId != null)
                 {
                     var houseId = dbContext.TblHouseAddress.Where(x => x.SectorId == SectorId.Id).FirstOrDefault();
                     dbContext.TblHouseAddress.RemoveRange(houseId);
@@ -180,7 +179,7 @@ namespace MyClientCoreProject.Repository.SqlRepository
                 }
                 return SectorId;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 StaticHelper.LogException(path: up.GetLogFilePath(), errorMessage: ex.Message, methodName: $"Repository name: {nameof(FileRepository)} - Method name:  {nameof(DeleteSector)}", stackTrace: ex.StackTrace);
                 return null;
@@ -240,7 +239,7 @@ namespace MyClientCoreProject.Repository.SqlRepository
                 {
                     var duplicateNameRecord = dbContext.TblHouseAddress.Where(x => x.Id != model.HouseId &&
                                                                               x.HouseNo == model.HouseNo &&
-                                                                              x.SectorId == model.SectorID ).FirstOrDefault();
+                                                                              x.SectorId == model.SectorID).FirstOrDefault();
 
                     if (duplicateNameRecord != null)
                         return 0;

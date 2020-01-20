@@ -1,7 +1,3 @@
-D:\Waleed - Projects\Projects\MyClientCoreProject\obj\Debug\netcoreapp2.2\MyClientCoreProject.RazorAssemblyInfo.cache
-D:\Waleed - Projects\Projects\MyClientCoreProject\obj\Debug\netcoreapp2.2\MyClientCoreProject.RazorAssemblyInfo.cs
-D:\Waleed - Projects\Projects\MyClientCoreProject\obj\Debug\netcoreapp2.2\MyClientCoreProject.AssemblyInfoInputs.cache
-D:\Waleed - Projects\Projects\MyClientCoreProject\obj\Debug\netcoreapp2.2\MyClientCoreProject.AssemblyInfo.cs
 D:\Waleed - Projects\Projects\MyClientCoreProject\wwwroot\netcoreapp2.2\appsettings.Development.json
 D:\Waleed - Projects\Projects\MyClientCoreProject\wwwroot\netcoreapp2.2\appsettings.json
 D:\Waleed - Projects\Projects\MyClientCoreProject\wwwroot\netcoreapp2.2\Properties\launchSettings.json
@@ -11,7 +7,11 @@ D:\Waleed - Projects\Projects\MyClientCoreProject\wwwroot\netcoreapp2.2\MyClient
 D:\Waleed - Projects\Projects\MyClientCoreProject\wwwroot\netcoreapp2.2\MyClientCoreProject.dll
 D:\Waleed - Projects\Projects\MyClientCoreProject\wwwroot\netcoreapp2.2\MyClientCoreProject.pdb
 D:\Waleed - Projects\Projects\MyClientCoreProject\wwwroot\netcoreapp2.2\MyClientCoreProject.xml
+D:\Waleed - Projects\Projects\MyClientCoreProject\obj\Debug\netcoreapp2.2\MyClientCoreProject.csprojAssemblyReference.cache
+D:\Waleed - Projects\Projects\MyClientCoreProject\obj\Debug\netcoreapp2.2\MyClientCoreProject.RazorAssemblyInfo.cache
+D:\Waleed - Projects\Projects\MyClientCoreProject\obj\Debug\netcoreapp2.2\MyClientCoreProject.RazorAssemblyInfo.cs
+D:\Waleed - Projects\Projects\MyClientCoreProject\obj\Debug\netcoreapp2.2\MyClientCoreProject.AssemblyInfoInputs.cache
+D:\Waleed - Projects\Projects\MyClientCoreProject\obj\Debug\netcoreapp2.2\MyClientCoreProject.AssemblyInfo.cs
 D:\Waleed - Projects\Projects\MyClientCoreProject\obj\Debug\netcoreapp2.2\MyClientCoreProject.RazorTargetAssemblyInfo.cache
 D:\Waleed - Projects\Projects\MyClientCoreProject\obj\Debug\netcoreapp2.2\MyClientCoreProject.dll
 D:\Waleed - Projects\Projects\MyClientCoreProject\obj\Debug\netcoreapp2.2\MyClientCoreProject.pdb
-D:\Waleed - Projects\Projects\MyClientCoreProject\obj\Debug\netcoreapp2.2\MyClientCoreProject.csprojAssemblyReference.cache

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MyClientCoreProject.Helper;
-using MyClientCoreProject.Models;
 using MyClientCoreProject.Models.DB;
 using MyClientCoreProject.Repository.Interfaces;
 using MyClientCoreProject.Utilities;
@@ -132,7 +131,7 @@ namespace MyClientCoreProject.Presenter
             {
                 return file.DeleteSector(Id);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 StaticHelper.LogException(path: up.GetLogFilePath(), errorMessage: ex.Message, methodName: $"Class Name: {nameof(FilePresenter)} - Method name:  {nameof(DeleteSector)}", stackTrace: ex.StackTrace);
                 return null;

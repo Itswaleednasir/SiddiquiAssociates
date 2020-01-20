@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using MyClientCoreProject.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MyClientCoreProject.Repository.Interfaces;
 using MyClientCoreProject.ViewModel;
@@ -125,9 +124,9 @@ namespace MyClientCoreProject.Presenter
         {
             try
             {
-               return employee.DeleteRole(Id);
+                return employee.DeleteRole(Id);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 StaticHelper.LogException(path: up.GetLogFilePath(), errorMessage: ex.Message, methodName: $"Class Name: {nameof(EmployeePresenter)} - Method name:  {nameof(DeleteRole)}", stackTrace: ex.StackTrace);
                 return null;

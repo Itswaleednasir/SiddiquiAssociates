@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using MyClientCoreProject.Helper;
-using MyClientCoreProject.Models;
 using MyClientCoreProject.Models.DB;
 using MyClientCoreProject.Repository.Interfaces;
 using MyClientCoreProject.Utilities;
@@ -16,11 +15,11 @@ namespace MyClientCoreProject.Repository.SqlRepository
 {
     public class ReceiptRepository : IReceipt
     {
-        private readonly SiddiquiAssociateDBContext dbContext;
+        private readonly DocumentManagement_WContext dbContext;
         private readonly IHostingEnvironment env;
         UtilitiesProvider up;
 
-        public ReceiptRepository(SiddiquiAssociateDBContext dbContext, IHostingEnvironment env) //Constructor
+        public ReceiptRepository(DocumentManagement_WContext dbContext, IHostingEnvironment env) //Constructor
         {
             this.dbContext = dbContext;
             this.env = env;
@@ -191,7 +190,7 @@ namespace MyClientCoreProject.Repository.SqlRepository
                         updateReceiptCount = dbContext.Database.ExecuteSqlCommand($"sp_UpdateReceipt @HouseId = {model.HouseId},@ParamUpdate = Diary,@DiaryNo = {model.DiaryNo},@DiaryDate = {model.DiaryDate}");
                     else if (model.DispatchNo != null && model.DispatchDate != "")
                         updateReceiptCount = dbContext.Database.ExecuteSqlCommand($"sp_UpdateReceipt @HouseId = {model.HouseId},@ParamUpdate = Dispatch,@DispatchNo = {model.DispatchNo},@DispatchDate = {model.DispatchDate}");
-                    else if(model.StampDutyAmount != null && model.StampDutyDate != "")
+                    else if (model.StampDutyAmount != null && model.StampDutyDate != "")
                         updateReceiptCount = dbContext.Database.ExecuteSqlCommand($"sp_UpdateReceipt @HouseId = {model.HouseId},@ParamUpdate = StampDuty,@StampDutyAmount = {model.StampDutyAmount},@StampDutyDate = {model.StampDutyDate}");
                     else if (model.ChallanAmount != null && model.ChallanDate != "")
                         updateReceiptCount = dbContext.Database.ExecuteSqlCommand($"sp_UpdateReceipt @HouseId = {model.HouseId},@ParamUpdate = Challan,@ChallanAmount = {model.ChallanAmount},@ChallanDate = {model.ChallanDate}");

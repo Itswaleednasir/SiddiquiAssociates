@@ -5,21 +5,19 @@ using MyClientCoreProject.ViewModel;
 
 namespace MyClientCoreProject.Models.DB
 {
-    public partial class SiddiquiAssociateDBContext : DbContext
+    public partial class DocumentManagement_WContext : DbContext
     {
-        public SiddiquiAssociateDBContext()
+        public DocumentManagement_WContext()
         {
         }
 
-        public SiddiquiAssociateDBContext(DbContextOptions<SiddiquiAssociateDBContext> options)
-            : base(options)
-        {
-        }
+        public DocumentManagement_WContext(DbContextOptions<DocumentManagement_WContext> options): base(options){}
 
         public DbQuery<EmployeeRoleViewModel> EmployeeRoleViewModel { get; set; }
         public DbQuery<HouseAddressViewModel> HouseAddressViewModel { get; set; }
         public DbQuery<ReceiptPaymentViewModel> ReceiptPaymentViewModel { get; set; }
         public DbQuery<GetReceiptViewModel> GetReceiptViewModel { get; set; }
+
 
         public virtual DbSet<TblEmployee> TblEmployee { get; set; }
         public virtual DbSet<TblEmployeeRole> TblEmployeeRole { get; set; }
@@ -35,8 +33,8 @@ namespace MyClientCoreProject.Models.DB
         {
             if (!optionsBuilder.IsConfigured)
             {
-                //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=.;Database=SiddiquiAssociateDB;Trusted_Connection=True;");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Server=192.168.10.231;Database=DocumentManagement_W;user id=sa;password=marvin2;;MultipleActiveResultSets=True;");
             }
         }
 
@@ -151,11 +149,11 @@ namespace MyClientCoreProject.Models.DB
 
                 entity.Property(e => e.CaseTotalCost).HasColumnType("money");
 
+                entity.Property(e => e.ChallanAmount).HasColumnType("money");
+
                 entity.Property(e => e.ChallanDate)
                     .HasMaxLength(11)
                     .IsUnicode(false);
-
-                entity.Property(e => e.ChallanAmount).HasColumnType("money");
 
                 entity.Property(e => e.Description)
                     .HasMaxLength(1000)
@@ -178,6 +176,8 @@ namespace MyClientCoreProject.Models.DB
                     .IsUnicode(false);
 
                 entity.Property(e => e.EmployeeId).HasColumnName("EmployeeID");
+
+                entity.Property(e => e.FileExpenditure).HasColumnType("money");
 
                 entity.Property(e => e.FileId).HasColumnName("FileID");
 

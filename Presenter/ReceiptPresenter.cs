@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using MyClientCoreProject.Helper;
-using MyClientCoreProject.Models;
 using MyClientCoreProject.Models.DB;
 using MyClientCoreProject.Repository.Interfaces;
 using MyClientCoreProject.Utilities;

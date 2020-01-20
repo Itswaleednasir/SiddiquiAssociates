@@ -29,6 +29,7 @@ namespace MyClientCoreProject.Models.DB
         public string StampDutyDate { get; set; }
         public decimal? ChallanAmount { get; set; }
         public string ChallanDate { get; set; }
+        public decimal? FileExpenditure { get; set; }
         public int? EmployeeId { get; set; }
 
         public virtual TblEmployee Employee { get; set; }
