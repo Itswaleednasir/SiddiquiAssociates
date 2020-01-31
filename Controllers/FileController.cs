@@ -90,11 +90,11 @@ namespace MyClientCoreProject.Controllers
         /// <param name="Id"></param>
         /// <returns></returns>
         [HttpDelete("files/{id}")]
-        public IActionResult DeleteFile(int Id)
+        public IActionResult DeleteFile(int id)
         {
             try
             {
-                return Ok(fp.DeleteFile(Id));
+                return Ok(fp.DeleteFile(id));
             }
             catch (Exception ex)
             {
@@ -177,11 +177,11 @@ namespace MyClientCoreProject.Controllers
         /// <param name="Id"></param>
         /// <returns></returns>
         [HttpDelete("sectors/{id}")]
-        public IActionResult DeleteSector(int Id)
+        public IActionResult DeleteSector(int id)
         {
             try
             {
-                return Ok(fp.DeleteSector(Id));
+                return Ok(fp.DeleteSector(id));
             }
             catch (Exception ex)
             {

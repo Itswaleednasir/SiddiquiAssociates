@@ -57,7 +57,6 @@ namespace MyClientCoreProject
                  .AllowAnyOrigin()
                  .AllowAnyMethod()
                  .AllowAnyHeader()
-                 .AllowAnyMethod()
                  .AllowCredentials();
             }));
 
@@ -103,6 +102,7 @@ namespace MyClientCoreProject
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+
             app.UseSwagger();
 
             app.UseSwaggerUI(c =>
@@ -119,7 +119,6 @@ namespace MyClientCoreProject
             app.UseCors("AllowAll");
 
             app.UseAuthentication();
-            //app.UseAuthorization();
 
             app.UseMvc();
             

@@ -7,7 +7,6 @@ D:\Waleed - Projects\Projects\MyClientCoreProject\wwwroot\netcoreapp2.2\MyClient
 D:\Waleed - Projects\Projects\MyClientCoreProject\wwwroot\netcoreapp2.2\MyClientCoreProject.dll
 D:\Waleed - Projects\Projects\MyClientCoreProject\wwwroot\netcoreapp2.2\MyClientCoreProject.pdb
 D:\Waleed - Projects\Projects\MyClientCoreProject\wwwroot\netcoreapp2.2\MyClientCoreProject.xml
-D:\Waleed - Projects\Projects\MyClientCoreProject\obj\Debug\netcoreapp2.2\MyClientCoreProject.csprojAssemblyReference.cache
 D:\Waleed - Projects\Projects\MyClientCoreProject\obj\Debug\netcoreapp2.2\MyClientCoreProject.RazorAssemblyInfo.cache
 D:\Waleed - Projects\Projects\MyClientCoreProject\obj\Debug\netcoreapp2.2\MyClientCoreProject.RazorAssemblyInfo.cs
 D:\Waleed - Projects\Projects\MyClientCoreProject\obj\Debug\netcoreapp2.2\MyClientCoreProject.AssemblyInfoInputs.cache
