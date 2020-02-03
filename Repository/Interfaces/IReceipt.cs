@@ -68,5 +68,7 @@ namespace MyClientCoreProject.Repository.Interfaces
         #endregion
 
         #endregion
+
+        IList<HouseAddressViewModel> GetHouseAddress(int id);
     }
 }

@@ -15,3 +15,5 @@ D:\Waleed - Projects\Projects\MyClientCoreProject\obj\Release\netcoreapp2.2\win-
 D:\Waleed - Projects\Projects\MyClientCoreProject\obj\Release\netcoreapp2.2\win-x64\MyClientCoreProject.dll
 D:\Waleed - Projects\Projects\MyClientCoreProject\obj\Release\netcoreapp2.2\win-x64\MyClientCoreProject.pdb
 D:\Waleed - Projects\Projects\MyClientCoreProject\obj\Release\netcoreapp2.2\win-x64\MyClientCoreProject.csprojAssemblyReference.cache
+D:\Waleed - Projects\Projects\MyClientCoreProject\bin\Release\netcoreapp2.2\win-x64\hostpolicy.dll
+D:\Waleed - Projects\Projects\MyClientCoreProject\bin\Release\netcoreapp2.2\win-x64\hostfxr.dll

@@ -307,5 +307,19 @@ namespace MyClientCoreProject.Repository.SqlRepository
 
         #endregion
 
+        public IList<HouseAddressViewModel> GetHouseAddress(int SectorId)
+        {
+            try
+            {
+                var houseAddressList = dbContext.HouseAddressViewModel.FromSql($"sp_GetAllHouseAddressForNewReceipt {SectorId}").ToList();
+                return houseAddressList;
+            }
+            catch (Exception ex)
+            {
+                StaticHelper.LogException(path: up.GetLogFilePath(), errorMessage: ex.Message, methodName: $"Repository name: {nameof(ReceiptRepository)} - Method name:  {nameof(GetHouseAddress)}", stackTrace: ex.StackTrace);
+                return null;
+            }
+        }
+
     }
 }

@@ -125,6 +125,23 @@ namespace MyClientCoreProject.Controllers
 
         #region Receipt (GET,POST,PUT,DELETE)
 
+        #region GetHouseAddress
+        [HttpGet("house/{id}")]
+        public ActionResult GetNewHouseAddress(int id)
+        {
+            try
+            {
+                return Ok(rp.GetHouseAddress(id));
+            }
+            catch (Exception ex)
+            {
+                _logger.Exceptions(ex, route.Values["controller"].ToString(), route.Values["action"].ToString());
+                return StatusCode(500);
+            }
+        }
+        #endregion
+
+
         #region GET
         /// <summary>
         /// 

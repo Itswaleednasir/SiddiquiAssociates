@@ -205,5 +205,18 @@ namespace MyClientCoreProject.Presenter
 
         #endregion
 
+        public IList<HouseAddressViewModel> GetHouseAddress(int id)
+        {
+            try
+            {
+                return receipt.GetHouseAddress(id);
+            }
+            catch (Exception ex)
+            {
+                StaticHelper.LogException(path: up.GetLogFilePath(), errorMessage: ex.Message, methodName: $"Class Name: {nameof(ReceiptPresenter)} - Method name:  {nameof(GetHouseAddress)}", stackTrace: ex.StackTrace);
+                return null;
+            }
+        }
+
     }
 }
