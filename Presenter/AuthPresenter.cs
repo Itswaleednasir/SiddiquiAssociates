@@ -37,11 +37,13 @@ namespace MyClientCoreProject.Presenter
                 var employeeRecord = _employee.GetEmployeeForAuthorization(x => x.UserName == userName && x.Password == password).FirstOrDefault();
                 if (employeeRecord != null)
                 {
+                    var employeeRole = employeeRecord.RoleId == 1 ? "Admin" : "Employee";
                     var jwtSecret = configuration.GetValue<string>("AppSettings:JWT_SECRET");
                     var accessTokenExpiration = configuration.GetValue<int>("AppSettings:ACCESS_TOKEN_EXPIRES_IN_MINUTES");
 
                     token = GenerateTokenAsync(userId: employeeRecord.Id,
                                                userName: employeeRecord.UserName,
+                                               employeeRole: employeeRole,
                                                jwtSecret: jwtSecret,
                                                jwtExpiry: accessTokenExpiration);
                 }
@@ -54,7 +56,7 @@ namespace MyClientCoreProject.Presenter
             }
         }
 
-        public string GenerateTokenAsync(int userId, string userName, string jwtSecret, int jwtExpiry)
+        public string GenerateTokenAsync(int userId, string userName,string employeeRole,string jwtSecret, int jwtExpiry)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(jwtSecret);
@@ -62,6 +64,7 @@ namespace MyClientCoreProject.Presenter
             var identity = new ClaimsIdentity(authenticationType: "JWT");
             identity.AddClaim(new Claim("userId", userId.ToString()));
             identity.AddClaim(new Claim("userName", userName));
+            identity.AddClaim(new Claim("role", employeeRole));
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
