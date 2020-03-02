@@ -213,6 +213,23 @@ namespace MyClientCoreProject.Repository.SqlRepository
         }
         #endregion
 
+
+        public TblEmployee SaveToken(string token,int id)
+        {
+            try
+            {
+                var employeeExists = dbContext.TblEmployee.Where(x => x.Id == id).FirstOrDefault();
+                employeeExists.JwtToken = token;
+                dbContext.SaveChanges();
+                return employeeExists;
+            }
+            catch (Exception ex)
+            {
+                StaticHelper.LogException(path: up.GetLogFilePath(), errorMessage: ex.Message, methodName: $"Repository name: {nameof(EmployeeRepository)} - Method name:  {nameof(SaveToken)}", stackTrace: ex.StackTrace);
+                return null;
+            }
+        }
+
         #endregion
     }
 }

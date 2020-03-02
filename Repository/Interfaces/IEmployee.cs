@@ -49,6 +49,8 @@ namespace MyClientCoreProject.Repository.Interfaces
 
         #region Authorization(GET)
         IEnumerable<TblEmployee> GetEmployeeForAuthorization(Expression<Func<TblEmployee, bool>> predicate);
+
+        TblEmployee SaveToken(string token, int id);
         #endregion
     }
 }

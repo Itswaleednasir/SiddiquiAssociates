@@ -46,6 +46,7 @@ namespace MyClientCoreProject.Presenter
                                                employeeRole: employeeRole,
                                                jwtSecret: jwtSecret,
                                                jwtExpiry: accessTokenExpiration);
+                    //var empRecord = _employee.SaveToken(token, employeeRecord.Id);
                 }
                 return token;
             }

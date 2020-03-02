@@ -16,6 +16,7 @@ namespace MyClientCoreProject.Models.DB
         public string Password { get; set; }
         public string PhoneNo { get; set; }
         public int? RoleId { get; set; }
+        public string JwtToken { get; set; }
 
         public virtual TblEmployeeRole Role { get; set; }
         public virtual ICollection<TblReceipt> TblReceipt { get; set; }
